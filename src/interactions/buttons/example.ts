@@ -4,7 +4,7 @@ export default [
   new BotButton({
     name: 'example',
     execute(interaction) {
-        
+      
     }
   })
 ]
