@@ -8,7 +8,7 @@ import deployCommands from './src/deploy-commands.js';
 import startServer from './server.js';
 config();
 let hasDeployed = false;
-const manager = new ShardingManager('./src/bot.ts', {
+const manager = new ShardingManager('./src/bot.js', {
     token: process.env.TOKEN,
     execArgv: process.execArgv,
     mode: 'process',
@@ -21,7 +21,7 @@ readdirSync(commandsDir).forEach(folderName => {
     if (!statSync(commandFolderPath).isDirectory())
         return;
     readdirSync(commandFolderPath)
-        .filter(fileName => fileName.endsWith('.ts'))
+        .filter(fileName => fileName.endsWith('.js'))
         .forEach(async (fileName) => {
         const commandConfig = (await import(`${commandsDir}${folderName}/${fileName}`)).default;
         const command = new BotCommand({

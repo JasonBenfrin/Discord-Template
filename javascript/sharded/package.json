@@ -2,9 +2,9 @@
   "name": "template-js-sharded",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
+  "main": "index.js",
   "scripts": {
-    "start": "ts-node-esm index.ts"
+    "start": "node index.js"
   },
   "author": "JasonBenfrin",
   "license": "ISC",

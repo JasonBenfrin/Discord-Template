@@ -19,7 +19,7 @@ export default class BotClient extends Client {
             if (!statSync(commandFolderPath).isDirectory())
                 return;
             readdirSync(commandFolderPath)
-                .filter(fileName => fileName.endsWith('.ts'))
+                .filter(fileName => fileName.endsWith('.js'))
                 .forEach(async (fileName) => {
                 const commandConfig = (await import(`../interactions/commands/${folderName}/${fileName}`)).default;
                 const command = new BotCommand({
@@ -36,14 +36,14 @@ export default class BotClient extends Client {
         });
         // Events loader
         readdirSync('./src/events')
-            .filter(file => file.endsWith('.ts'))
+            .filter(file => file.endsWith('.js'))
             .forEach(async (fileName) => {
             const event = (await import(`../events/${fileName}`)).default;
             this[event.mode](event.name, (...args) => event.execute(...args));
         });
         // Buttons loader
         readdirSync('./src/interactions/buttons')
-            .filter(file => file.endsWith('.ts'))
+            .filter(file => file.endsWith('.js'))
             .forEach(async (fileName) => {
             const buttons = (await import(`../interactions/buttons/${fileName}`)).default;
             buttons.forEach(button => {
@@ -52,7 +52,7 @@ export default class BotClient extends Client {
         });
         // Modals loader
         readdirSync('./src/interactions/modals')
-            .filter(file => file.endsWith('.ts'))
+            .filter(file => file.endsWith('.js'))
             .forEach(async (fileName) => {
             const modals = (await import(`../interactions/modals/${fileName}`)).default;
             modals.forEach(modal => {
